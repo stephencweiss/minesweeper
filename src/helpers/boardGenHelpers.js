@@ -1,5 +1,30 @@
 "use strict";
 
+const { DIFFICULTY_LEVEL } = require("../constants");
+
+function generateMinesMap(size, difficulty) {
+  return generateRow(size, () =>
+    generateRow(size, () => {
+      const isMine = Math.random() <= DIFFICULTY_LEVEL[difficulty];
+      return isMine; // puts a 1 if a mine; 0 otherwise;
+    })
+  );
+}
+
+function countCells(minesMap, height, width) {
+  let mines = 0;
+  let unopened = 0;
+  let cells = 0;
+  for (let y = 0; y < height; y += 1) {
+    for (let x = 0; x < width; x += 1) {
+      if (minesMap[y][x]) mines += 1;
+      else unopened += 1;
+      cells += 1;
+    }
+  }
+  return [cells, mines, unopened];
+}
+
 function generateRow(size, fn) {
   return new Array(size).fill(null).map(fn);
 }
@@ -9,9 +34,7 @@ function generateRow(size, fn) {
  * returns the count
  *
  */
-function calculateCellCounts(countMap, minesMap) {
-  const height = countMap.length;
-  const width = countMap[0].length;
+function updateCountMapWithCounts(countMap, minesMap, height, width) {
   let count = 0;
   for (let y = 0; y < height; y += 1) {
     for (let x = 0; x < width; x += 1) {
@@ -37,4 +60,9 @@ function calculateCellCount(x, y, mapSize, minesMap, count) {
   return newCount;
 }
 
-module.exports = { generateRow, calculateCellCounts };
+module.exports = {
+  countCells,
+  generateMinesMap,
+  generateRow,
+  updateCountMapWithCounts
+};

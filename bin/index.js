@@ -2,14 +2,24 @@
 
 const yargs = require("yargs");
 
-// const game = require('../index.js);
+const game = require("../src/index.js/index.js");
 
-const options = yargs.usage("Usage: minesweeper [--size <size>]").options("s", {
-  alias: "size",
-  describe: "The size of the board (number of rows/columns).",
-  type: "number"
-}).argv;
+const options = yargs
+  .usage("Usage: minesweeper [--size <size>]")
+  .options("s", {
+    alias: "size",
+    describe: "The size of the board (number of rows/columns).",
+    type: "number"
+  })
+  .options("d", {
+    alias: "difficulty",
+    describe: "The difficulty of the board ('E[asy]', 'M[edium]', 'H[ard]'",
+    type: "string"
+  }).argv;
 
-const size = +argv.size || 5;
+const size = +options.size || 20;
+const difficulty = options.difficulty
+  ? options.difficulty.toLowerCase()
+  : "medium";
 
-// game({ size }).on("abort", () => process.exit(1));
+game({ difficulty, size }).on("abort", () => process.exit(1));

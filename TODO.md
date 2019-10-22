@@ -1,7 +1,8 @@
 # TODOs
 
-- [ ] Generate the board with mines randomly distributed
-- [ ] Generate a masked board
+- [x] Generate the board with mines randomly distributed
+- [x] Generate a masked board
+- [ ] Render the board
 - [ ] Add board navigation (arrows + h,j,k,l)
 - [ ] Create board controls - flag (f) and reveal (space / r)
 - [ ] Calculate game state on flag and reveal (active, win, lose)

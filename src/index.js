@@ -8,32 +8,26 @@ const {
   countCells,
   updateCountMapWithCounts,
   generateMinesMap,
-  generateRow
+  generateEmptyMap
 } = require("./helpers/boardGenHelpers");
 
 /**
  *
  * @param {*} options - An object that will contain size of the board (rows and columns);
  */
-function minesweeper(options) {
+function setupMinesweeper(options) {
   const height = options.size;
   const width = options.size;
 
   const minesMap = generateMinesMap(options.size, options.difficulty);
-  const flaggedMap = generateRow(options.size, () =>
-    generateRow(options.size, () => false)
-  );
-  const openedMap = generateRow(options.size, () =>
-    generateRow(options.size, () => false)
-  );
-  const countMap = generateRow(options.size, () =>
-    generateRow(options.size, () => 0)
-  );
+  const flaggedMap = generateEmptyMap(options.size, false);
+  const openedMap = generateEmptyMap(options.size, false);
+  const countMap = generateEmptyMap(options.size, 0);
 
   updateCountMapWithCounts(countMap, minesMap, height, width);
 
-  const [cells, mines, unopened] = countCells(minesMap, height, width);
+  let [cells, mines, unopened] = countCells(minesMap, height, width);
   console.log({ cells, mines, unopened, minesMap, flaggedMap, openedMap });
 }
 
-module.exports = Object.assign(minesweeper, {});
+module.exports = Object.assign(setupMinesweeper, {});

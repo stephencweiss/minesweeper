@@ -11,6 +11,9 @@ function generateMinesMap(size, difficulty) {
   );
 }
 
+function generateEmptyMap(size, emptyVal) {
+  return generateRow(size, () => generateRow(size, () => emptyVal));
+}
 function countCells(minesMap, height, width) {
   let mines = 0;
   let unopened = 0;
@@ -63,6 +66,6 @@ function calculateCellCount(x, y, mapSize, minesMap, count) {
 module.exports = {
   countCells,
   generateMinesMap,
-  generateRow,
+  generateEmptyMap,
   updateCountMapWithCounts
 };

@@ -2,7 +2,7 @@
 
 const yargs = require("yargs");
 
-const game = require("../src/index.js/index.js");
+const game = require("../src/index.js");
 
 const options = yargs
   .usage("Usage: minesweeper [--size <size>]")

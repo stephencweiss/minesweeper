@@ -22,4 +22,4 @@ const difficulty = options.difficulty
   ? options.difficulty.toLowerCase()
   : "medium";
 
-game({ difficulty, size }).on("abort", () => process.exit(1));
+game({ difficulty, size }); //.on("abort", () => process.exit(1));

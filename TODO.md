@@ -3,7 +3,9 @@
 - [x] Generate the board with mines randomly distributed
 - [x] Generate a masked board
 - [ ] Render the board
+  - [ ] Handle the fact that `prompt-skeleton` now returns a promise (^1.0.0)
 - [ ] Add board navigation (arrows + h,j,k,l)
+  - _Note_ Other keybindings will need to be added manually as `prompt-skeleton` is currently listening for the arrows for methods like up/down, left/right.
 - [ ] Create board controls - flag (f) and reveal (space / r)
 - [ ] Calculate game state on flag and reveal (active, win, lose)
   - [ ] Lose: reveal = isMine(true)
